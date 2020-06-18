@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ComponentCService } from './../servicios/component-c.service';
 
 export interface Persona {
 	nombre: string;
@@ -13,21 +14,23 @@ export interface Persona {
 	styleUrls: [ './componente-c.component.css' ]
 })
 export class ComponenteCComponent implements OnInit {
-	personas: Persona[] = [
-		{ nombre: 'Diego', apellido: 'Maradona', edad: 59 },
-		{ nombre: 'Leo', apellido: 'Messi', edad: 30 },
-		{ nombre: 'Carlos', apellido: 'Teves', edad: 33 }
-	];
-
 	displayedColumns: string[] = [ 'nombre', 'apellido', 'edad', 'editar' ];
-	dataSource = this.personas;
+	dataSource: any[] = [];
 
-	constructor(private router: Router) {}
+	constructor(private router: Router, private componenteCService: ComponentCService) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.getPersonas();
+	}
 
+	getPersonas() {
+		this.componenteCService.getPersonas().subscribe((personas) => {
+			debugger;
+			this.dataSource = personas;
+		});
+	}
 	editar(element) {
-    debugger;
-    this.router.navigate(['/componente-b', element])
+		debugger;
+		this.router.navigate([ '/componente-b', element ]);
 	}
 }

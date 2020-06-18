@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ComponenteBComponent implements OnInit {
 	@Input() componenteB: any;
+	@Input() textoBtn: string;
 
 	itemForm: FormGroup;
 	persona: any;
@@ -21,7 +22,7 @@ export class ComponenteBComponent implements OnInit {
 		debugger;		
 		this.param = this.route.snapshot.params;
 
-		if (Object.keys(this.param).length) {
+		if (Object.keys(this.param).length > 0) {
 			this.persona = this.param;
 		} else {
 			this.persona = this.componenteB;
@@ -32,7 +33,7 @@ export class ComponenteBComponent implements OnInit {
 
 	initForm(item) {
 		this.itemForm = this.fb.group({
-			nombre: [ item.nombre ],
+			nombre: [ item ? item.nombre : '' ],
 			apellido: [ item.apellido ],
 			edad: [ item.edad ]
 		});

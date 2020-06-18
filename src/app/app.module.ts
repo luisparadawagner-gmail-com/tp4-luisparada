@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 
+import { ComponentCService } from './servicios/component-c.service';
+
 @NgModule({
 	declarations: [ AppComponent, ComponenteAComponent, ComponenteBComponent, ComponenteCComponent ],
 	imports: [
@@ -32,9 +35,10 @@ import { MatTableModule } from '@angular/material/table';
 		MatSlideToggleModule,
 		MatMenuModule,
 		MatTableModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		HttpClientModule
 	],
-	providers: [],
+	providers: [ ComponentCService ],
 	bootstrap: [ AppComponent ]
 })
 export class AppModule {}

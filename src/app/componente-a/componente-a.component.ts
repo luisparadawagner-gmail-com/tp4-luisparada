@@ -11,6 +11,7 @@ export class ComponenteAComponent implements OnInit {
 
 	componenteA: any;
 	showComponenteB: boolean = false;
+	showComponenteA: boolean = true;
 	constructor(private fb: FormBuilder) {}
 
 	ngOnInit(): void {
@@ -28,5 +29,6 @@ export class ComponenteAComponent implements OnInit {
 	submit() {
 		this.componenteA = this.itemForm.value;
 		this.showComponenteB = true;
+		this.showComponenteA = false;
 	}
 }
